@@ -1,0 +1,15 @@
+read_verilog rtl/full_adder.v
+read_verilog rtl/rca4.v
+read_verilog rtl/csla4.v
+read_verilog rtl/csla32.v
+read_verilog rtl/alu32_csla.v
+
+hierarchy -top alu32_csla
+proc
+flatten
+opt
+techmap
+opt
+
+abc -script synth/rca_depth.abc
+stat

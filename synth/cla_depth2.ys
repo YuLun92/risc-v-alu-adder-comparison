@@ -1,0 +1,13 @@
+read_verilog rtl/cla4.v
+read_verilog rtl/cla32.v
+read_verilog rtl/alu32_cla.v
+
+hierarchy -top alu32_cla
+proc
+flatten
+opt
+techmap
+opt
+
+abc -script synth/rca_depth.abc
+stat

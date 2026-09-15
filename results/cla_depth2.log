@@ -1,0 +1,309 @@
+
+ /----------------------------------------------------------------------------\
+ |                                                                            |
+ |  yosys -- Yosys Open SYnthesis Suite                                       |
+ |                                                                            |
+ |  Copyright (C) 2012 - 2019  Clifford Wolf <clifford@clifford.at>           |
+ |                                                                            |
+ |  Permission to use, copy, modify, and/or distribute this software for any  |
+ |  purpose with or without fee is hereby granted, provided that the above    |
+ |  copyright notice and this permission notice appear in all copies.         |
+ |                                                                            |
+ |  THE SOFTWARE IS PROVIDED "AS IS" AND THE AUTHOR DISCLAIMS ALL WARRANTIES  |
+ |  WITH REGARD TO THIS SOFTWARE INCLUDING ALL IMPLIED WARRANTIES OF          |
+ |  MERCHANTABILITY AND FITNESS. IN NO EVENT SHALL THE AUTHOR BE LIABLE FOR   |
+ |  ANY SPECIAL, DIRECT, INDIRECT, OR CONSEQUENTIAL DAMAGES OR ANY DAMAGES    |
+ |  WHATSOEVER RESULTING FROM LOSS OF USE, DATA OR PROFITS, WHETHER IN AN     |
+ |  ACTION OF CONTRACT, NEGLIGENCE OR OTHER TORTIOUS ACTION, ARISING OUT OF   |
+ |  OR IN CONNECTION WITH THE USE OR PERFORMANCE OF THIS SOFTWARE.            |
+ |                                                                            |
+ \----------------------------------------------------------------------------/
+
+ Yosys 0.9 (git sha1 1979e0b)
+
+
+-- Executing script file `synth/cla_depth2.ys' --
+
+1. Executing Verilog-2005 frontend: rtl/cla4.v
+Parsing Verilog input from `rtl/cla4.v' to AST representation.
+Generating RTLIL representation for module `\cla4'.
+Successfully finished Verilog frontend.
+
+2. Executing Verilog-2005 frontend: rtl/cla32.v
+Parsing Verilog input from `rtl/cla32.v' to AST representation.
+Generating RTLIL representation for module `\cla32'.
+Successfully finished Verilog frontend.
+
+3. Executing Verilog-2005 frontend: rtl/alu32_cla.v
+Parsing Verilog input from `rtl/alu32_cla.v' to AST representation.
+Generating RTLIL representation for module `\alu32_cla'.
+Successfully finished Verilog frontend.
+
+4. Executing HIERARCHY pass (managing design hierarchy).
+
+4.1. Analyzing design hierarchy..
+Top module:  \alu32_cla
+Used module:     \cla32
+Used module:         \cla4
+
+4.2. Analyzing design hierarchy..
+Top module:  \alu32_cla
+Used module:     \cla32
+Used module:         \cla4
+Removed 0 unused modules.
+
+5. Executing PROC pass (convert processes to netlists).
+
+5.1. Executing PROC_CLEAN pass (remove empty switches from decision trees).
+Cleaned up 0 empty switches.
+
+5.2. Executing PROC_RMDEAD pass (remove dead branches from decision trees).
+Removed 1 dead cases from process $proc$rtl/alu32_cla.v:18$205 in module alu32_cla.
+Marked 1 switch rules as full_case in process $proc$rtl/alu32_cla.v:18$205 in module alu32_cla.
+Removed a total of 1 dead cases.
+
+5.3. Executing PROC_INIT pass (extract init attributes).
+
+5.4. Executing PROC_ARST pass (detect async resets in processes).
+
+5.5. Executing PROC_MUX pass (convert decision trees to multiplexers).
+Creating decoders for process `\alu32_cla.$proc$rtl/alu32_cla.v:18$205'.
+     1/2: $1\result[31:0]
+     2/2: $0\result[31:0]
+
+5.6. Executing PROC_DLATCH pass (convert process syncs to latches).
+No latch inferred for signal `\alu32_cla.\result' from process `\alu32_cla.$proc$rtl/alu32_cla.v:18$205'.
+
+5.7. Executing PROC_DFF pass (convert process syncs to FFs).
+
+5.8. Executing PROC_CLEAN pass (remove empty switches from decision trees).
+Found and cleaned up 1 empty switch in `\alu32_cla.$proc$rtl/alu32_cla.v:18$205'.
+Removing empty process `alu32_cla.$proc$rtl/alu32_cla.v:18$205'.
+Cleaned up 1 empty switch.
+
+6. Executing FLATTEN pass (flatten design).
+Using template cla32 for cells of type cla32.
+Using template cla4 for cells of type cla4.
+<suppressed ~9 debug messages>
+No more expansions possible.
+Deleting now unused module cla32.
+Deleting now unused module cla4.
+
+7. Executing OPT pass (performing simple optimizations).
+
+7.1. Executing OPT_EXPR pass (perform const folding).
+Optimizing module alu32_cla.
+<suppressed ~1 debug messages>
+
+7.2. Executing OPT_MERGE pass (detect identical cells).
+Finding identical cells in module `\alu32_cla'.
+<suppressed ~561 debug messages>
+Removed a total of 187 cells.
+
+7.3. Executing OPT_MUXTREE pass (detect dead branches in mux trees).
+Running muxtree optimizer on module \alu32_cla..
+  Creating internal representation of mux trees.
+  Evaluating internal representation of mux trees.
+  Analyzing evaluation results.
+Removed 0 multiplexer ports.
+<suppressed ~1 debug messages>
+
+7.4. Executing OPT_REDUCE pass (consolidate $*mux and $reduce_* inputs).
+  Optimizing cells in module \alu32_cla.
+    New ctrl vector for $pmux cell $procmux$215: { $auto$opt_reduce.cc:132:opt_mux$225 $procmux$221_CMP $procmux$220_CMP $procmux$219_CMP $procmux$218_CMP $procmux$217_CMP $procmux$216_CMP }
+    New input vector for $reduce_or cell $auto$opt_reduce.cc:126:opt_mux$224: { $procmux$222_CMP $procmux$223_CMP }
+  Optimizing cells in module \alu32_cla.
+Performed a total of 2 changes.
+
+7.5. Executing OPT_MERGE pass (detect identical cells).
+Finding identical cells in module `\alu32_cla'.
+Removed a total of 0 cells.
+
+7.6. Executing OPT_RMDFF pass (remove dff with constant values).
+
+7.7. Executing OPT_CLEAN pass (remove unused cells and wires).
+Finding unused cells or wires in module \alu32_cla..
+Removed 46 unused cells and 337 unused wires.
+<suppressed ~47 debug messages>
+
+7.8. Executing OPT_EXPR pass (perform const folding).
+Optimizing module alu32_cla.
+
+7.9. Rerunning OPT passes. (Maybe there is more to do..)
+
+7.10. Executing OPT_MUXTREE pass (detect dead branches in mux trees).
+Running muxtree optimizer on module \alu32_cla..
+  Creating internal representation of mux trees.
+  Evaluating internal representation of mux trees.
+  Analyzing evaluation results.
+Removed 0 multiplexer ports.
+<suppressed ~1 debug messages>
+
+7.11. Executing OPT_REDUCE pass (consolidate $*mux and $reduce_* inputs).
+  Optimizing cells in module \alu32_cla.
+Performed a total of 0 changes.
+
+7.12. Executing OPT_MERGE pass (detect identical cells).
+Finding identical cells in module `\alu32_cla'.
+Removed a total of 0 cells.
+
+7.13. Executing OPT_RMDFF pass (remove dff with constant values).
+
+7.14. Executing OPT_CLEAN pass (remove unused cells and wires).
+Finding unused cells or wires in module \alu32_cla..
+Removed 0 unused cells and 2 unused wires.
+<suppressed ~2 debug messages>
+
+7.15. Executing OPT_EXPR pass (perform const folding).
+Optimizing module alu32_cla.
+
+7.16. Finished OPT passes. (There is nothing left to do.)
+
+8. Executing TECHMAP pass (map to technology primitives).
+
+8.1. Executing Verilog-2005 frontend: <techmap.v>
+Parsing Verilog input from `<techmap.v>' to AST representation.
+Generating RTLIL representation for module `\_90_simplemap_bool_ops'.
+Generating RTLIL representation for module `\_90_simplemap_reduce_ops'.
+Generating RTLIL representation for module `\_90_simplemap_logic_ops'.
+Generating RTLIL representation for module `\_90_simplemap_compare_ops'.
+Generating RTLIL representation for module `\_90_simplemap_various'.
+Generating RTLIL representation for module `\_90_simplemap_registers'.
+Generating RTLIL representation for module `\_90_shift_ops_shr_shl_sshl_sshr'.
+Generating RTLIL representation for module `\_90_shift_shiftx'.
+Generating RTLIL representation for module `\_90_fa'.
+Generating RTLIL representation for module `\_90_lcu'.
+Generating RTLIL representation for module `\_90_alu'.
+Generating RTLIL representation for module `\_90_macc'.
+Generating RTLIL representation for module `\_90_alumacc'.
+Generating RTLIL representation for module `\$__div_mod_u'.
+Generating RTLIL representation for module `\$__div_mod'.
+Generating RTLIL representation for module `\_90_div'.
+Generating RTLIL representation for module `\_90_mod'.
+Generating RTLIL representation for module `\_90_pow'.
+Generating RTLIL representation for module `\_90_pmux'.
+Generating RTLIL representation for module `\_90_lut'.
+Successfully finished Verilog frontend.
+
+8.2. Continuing TECHMAP pass.
+Using extmapper simplemap for cells of type $eq.
+Using extmapper simplemap for cells of type $reduce_or.
+Using extmapper simplemap for cells of type $or.
+Using extmapper simplemap for cells of type $and.
+Using extmapper simplemap for cells of type $mux.
+Using extmapper simplemap for cells of type $xor.
+Running "alumacc" on wrapper $extern:wrap:$lt:A_SIGNED=1:A_WIDTH=32:B_SIGNED=1:B_WIDTH=32:Y_WIDTH=1:394426c56d1a028ba8fdd5469b163e04011def47.
+Using template $extern:wrap:$lt:A_SIGNED=1:A_WIDTH=32:B_SIGNED=1:B_WIDTH=32:Y_WIDTH=1:394426c56d1a028ba8fdd5469b163e04011def47 for cells of type $extern:wrap:$lt:A_SIGNED=1:A_WIDTH=32:B_SIGNED=1:B_WIDTH=32:Y_WIDTH=1:394426c56d1a028ba8fdd5469b163e04011def47.
+Using template $paramod$constmap:4621fcf06a436d1e2a4080e2ed9866a7d07a6e07$paramod$887c9fe2c55be14c90171bd2ff359c086a0858d7\_90_shift_ops_shr_shl_sshl_sshr for cells of type $shl.
+Using template $paramod$constmap:4621fcf06a436d1e2a4080e2ed9866a7d07a6e07$paramod$770435fdf938ca78b5f1ecab2552fff9f675f686\_90_shift_ops_shr_shl_sshl_sshr for cells of type $shr.
+Using template $paramod\_90_pmux\WIDTH=32\S_WIDTH=7 for cells of type $pmux.
+Using extmapper simplemap for cells of type $logic_not.
+Using template $paramod\_90_alu\A_SIGNED=1\B_SIGNED=1\A_WIDTH=32\B_WIDTH=32\Y_WIDTH=32 for cells of type $alu.
+Using template $paramod\_90_lcu\WIDTH=32 for cells of type $lcu.
+Using extmapper simplemap for cells of type $not.
+Using extmapper simplemap for cells of type $pos.
+No more expansions possible.
+<suppressed ~1502 debug messages>
+
+9. Executing OPT pass (performing simple optimizations).
+
+9.1. Executing OPT_EXPR pass (perform const folding).
+Optimizing module alu32_cla.
+<suppressed ~137 debug messages>
+
+9.2. Executing OPT_MERGE pass (detect identical cells).
+Finding identical cells in module `\alu32_cla'.
+<suppressed ~39 debug messages>
+Removed a total of 13 cells.
+
+9.3. Executing OPT_MUXTREE pass (detect dead branches in mux trees).
+Running muxtree optimizer on module \alu32_cla..
+  Creating internal representation of mux trees.
+  No muxes found in this module.
+Removed 0 multiplexer ports.
+
+9.4. Executing OPT_REDUCE pass (consolidate $*mux and $reduce_* inputs).
+  Optimizing cells in module \alu32_cla.
+Performed a total of 0 changes.
+
+9.5. Executing OPT_MERGE pass (detect identical cells).
+Finding identical cells in module `\alu32_cla'.
+Removed a total of 0 cells.
+
+9.6. Executing OPT_RMDFF pass (remove dff with constant values).
+
+9.7. Executing OPT_CLEAN pass (remove unused cells and wires).
+Finding unused cells or wires in module \alu32_cla..
+Removed 76 unused cells and 187 unused wires.
+<suppressed ~77 debug messages>
+
+9.8. Executing OPT_EXPR pass (perform const folding).
+Optimizing module alu32_cla.
+
+9.9. Rerunning OPT passes. (Maybe there is more to do..)
+
+9.10. Executing OPT_MUXTREE pass (detect dead branches in mux trees).
+Running muxtree optimizer on module \alu32_cla..
+  Creating internal representation of mux trees.
+  No muxes found in this module.
+Removed 0 multiplexer ports.
+
+9.11. Executing OPT_REDUCE pass (consolidate $*mux and $reduce_* inputs).
+  Optimizing cells in module \alu32_cla.
+Performed a total of 0 changes.
+
+9.12. Executing OPT_MERGE pass (detect identical cells).
+Finding identical cells in module `\alu32_cla'.
+Removed a total of 0 cells.
+
+9.13. Executing OPT_RMDFF pass (remove dff with constant values).
+
+9.14. Executing OPT_CLEAN pass (remove unused cells and wires).
+Finding unused cells or wires in module \alu32_cla..
+
+9.15. Executing OPT_EXPR pass (perform const folding).
+Optimizing module alu32_cla.
+
+9.16. Finished OPT passes. (There is nothing left to do.)
+
+10. Executing ABC pass (technology mapping using ABC).
+
+10.1. Extracting gate netlist of module `\alu32_cla' to `<abc-temp-dir>/input.blif'..
+Extracted 1415 gates and 1485 wires to a netlist network with 67 inputs and 32 outputs.
+
+10.1.1. Executing ABC.
+Running ABC command: berkeley-abc -s -f <abc-temp-dir>/abc.script 2>&1
+ABC: ABC command line: "source <abc-temp-dir>/abc.script".
+ABC: 
+ABC: + read_blif <abc-temp-dir>/input.blif 
+ABC: + read_library <abc-temp-dir>/stdcells.genlib 
+ABC: Entered genlib library with 17 gates from file "<abc-temp-dir>/stdcells.genlib".
+ABC: + source /home/user/risc-v-alu/synth/rca_depth.abc 
+ABC: netlist                       : i/o =   67/   32  lat =    0  and =   2054  lev = 28
+ABC: + write_blif <abc-temp-dir>/output.blif 
+
+10.1.2. Re-integrating ABC results.
+ABC RESULTS:              $lut cells:     4108
+ABC RESULTS:        internal signals:     1386
+ABC RESULTS:           input signals:       67
+ABC RESULTS:          output signals:       32
+Removing temp directory.
+
+11. Printing statistics.
+
+=== alu32_cla ===
+
+   Number of wires:               2630
+   Number of wire bits:           4091
+   Number of public wires:         100
+   Number of public wire bits:     710
+   Number of memories:               0
+   Number of memory bits:            0
+   Number of processes:              0
+   Number of cells:               2054
+     $lut                         2054
+
+End of script. Logfile hash: 11088fed5b
+CPU: user 1.10s system 0.05s, MEM: 23.80 MB total, 18.08 MB resident
+Yosys 0.9 (git sha1 1979e0b)
+Time spent: 20% 7x opt_merge (0 sec), 17% 9x opt_expr (0 sec), ...

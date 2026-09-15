@@ -1,0 +1,16 @@
+# Simulation waveform files
+*.vcd
+
+# Compiled simulation binaries
+/*_tb
+/*_check
+/full_adder_test
+/alu_check
+
+# Other generated simulator binaries
+*.vvp
+
+# Temporary/editor files
+*~
+*.swp
+*.swo
