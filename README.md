@@ -33,6 +33,10 @@ The three ALU versions use the same top-level logic. The main difference is the 
 - CLA: eight 4-bit CLA blocks
 - CSLA: eight 4-bit CSLA blocks with parallel computation for `Cin = 0` and `Cin = 1`
 
+## Architecture
+
+![32-bit RISC-V ALU overall architecture](figures/alu_overall_architecture.jpg)
+
 ## Verification
 
 Functional verification was performed using:
@@ -41,6 +45,10 @@ Functional verification was performed using:
 - GTKWave
 
 Testbenches were created for both the individual adder modules and the complete 32-bit ALU.
+
+### Simulation Waveform
+
+![GTKWave functional verification](figures/alu32_gtkwave.jpg)
 
 ## Synthesis
 
@@ -66,6 +74,14 @@ Two metrics were compared:
 
 RCA gives the lowest mapped cell count, while CLA gives the lowest structural logic depth. CSLA provides an intermediate result between the two.
 
+### Mapped Cell Count
+
+![Mapped cell count comparison](figures/mapped_cells.png)
+
+### Structural Logic Depth
+
+![Structural logic depth comparison](figures/logic_depth.png)
+
 > Note: ABC logic depth is used as a structural proxy and should not be interpreted as an actual timing delay in nanoseconds.
 
 ## Project Structure
@@ -80,3 +96,7 @@ risc-v-alu/
 ├── report/     # Project report
 ├── README.md
 └── .gitignore
+
+## Report
+
+[View the full project report](report/RISC-V_ALU_Adder_Comparison_Report.pdf)
