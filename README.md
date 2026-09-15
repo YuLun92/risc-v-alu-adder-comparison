@@ -96,6 +96,7 @@ risc-v-alu/
 ├── report/     # Project report
 ├── README.md
 └── .gitignore
+```
 
 ## Report
 
