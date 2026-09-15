@@ -84,6 +84,22 @@ RCA gives the lowest mapped cell count, while CLA gives the lowest structural lo
 
 > Note: ABC logic depth is used as a structural proxy and should not be interpreted as an actual timing delay in nanoseconds.
 
+## Quick Simulation
+
+Example simulation of the RCA-based ALU using Icarus Verilog:
+
+```bash
+iverilog -o alu32_tb \
+    rtl/full_adder.v \
+    rtl/rca32.v \
+    rtl/alu32.v \
+    tb/alu32_tb.v
+
+vvp alu32_tb
+```
+
+The testbench verifies all eight supported ALU operations.
+
 ## Project Structure
 
 ```text
